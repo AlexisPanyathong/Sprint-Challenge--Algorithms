@@ -97,7 +97,60 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        ##### Rules
+
+        # Inside the `robot_sort` directory you'll find the `robot_sort.py` file. Open it up and read through each of the robot's abilities. Once you've understood those, start filling out the `sort()` method following these rules:
+
+        #   * You may use any pre-defined robot methods.
+        #   * You may NOT modify any pre-defined robot methods.
+        #   * You may use logical operators. (`if`, `and`, `or`, `not`, etc.)
+        #   * You may use comparison operators. (`>`, `>=`, `<`, `<=`, `==`, `is`, etc.)
+        #   * You may use iterators. (`while`, `for`, `break`, `continue`)
+        #   * You may NOT store any variables. (`=`)
+        #   * You may NOT access any instance variables directly. (`self._anything`)
+        #   * You may NOT use any Python libraries or class methods. (`sorted()`, etc.)
+        #   * You may define robot helper methods, as long as they follow all the rules.
+
+        ##### Hints
+
+        # * Make sure you understand the problem and all of the rules! A solution that breaks the rules will not receive full credit.
+
+        # * If you're unsure if an operator or method is allowed, ask.
+
+        # * Lay out some numbered cards in a line and try sorting them as if you were the robot.
+
+        # * Come up with a plan and write out your algorithm before coding. If your plan is sound but you don't reach a working implementation in three hours, you may receive partial credit.
+
+        # * There is no efficiency requirement but you may lose points for an unreasonably slow solution. Tests should run in far less than 1 second.
+
+        # * We discussed a sorting method this week that might be useful. Which one?
+
+        # * The robot has exactly one bit of memory: its light. Why is this important?
+        
+        self.set_light_on()
+        while self.light_is_on():
+            # Use swap and have the item set to None.
+            if self._item == None:
+                self.swap_item()
+            # Move list to the right
+            while self.can_move_right():
+                self.move_right()
+                # Compare item to item in list. If item is larger than item in list, it will return one, so swap the items.
+                if self.compare_item() == 1:
+                    self.swap_item()
+            # Move to the left, if we don't hit None.
+            while self.can_move_left() == True and self.compare_item() is not None:
+                self.move_left()
+            # Once we get back to the Srtarting Position, we want to have the items to use swap_item().
+            self.swap_item()
+            # Check if we can go further to the right (since we are back at starting position). 
+            # If we can't move right, then we've reached the end of the list and that means that everything is sorted and the light can turn off
+            if self.can_move_right() is not True:
+                self.set_light_off()
+            # If not then move right.
+            else:
+                self.move_right()
+
 
 
 if __name__ == "__main__":
